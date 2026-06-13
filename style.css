@@ -104,7 +104,7 @@ nav ul li a:hover {
 }
 
 /* ==========================================================================
-   4. HERO SECTIONS
+   4. HERO SECTIONS (HOME & STANDALONE PAGES)
    ========================================================================== */
 .hero {
     background: radial-gradient(circle at top left, #eef2ff 0%, #ffffff 80%);
@@ -125,6 +125,29 @@ nav ul li a:hover {
     color: #475569;
     max-width: 700px;
     margin: 0 auto 35px;
+}
+
+/* Restored Standalone Fee Page Hero Styling */
+.fee-hero {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.fee-hero h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.fee-hero p {
+    font-size: 16px;
+    color: #475569;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
 /* ==========================================================================
@@ -264,7 +287,79 @@ nav ul li a:hover {
 }
 
 /* ==========================================================================
-   6. ADMISSIONS SECTION & PROFILE BLOCK
+   6. ORIGINAL RESTORED STANDALONE FEE DIRECTORY STYLE BLOCKS
+   ========================================================================== */
+.fee-directory {
+    padding: 50px 0;
+}
+
+.faculty-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.faculty-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #6366f1; /* The deep indigo baseline indicator layout */
+    display: inline-block;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14.5px;
+}
+
+th {
+    background-color: #f8fafc;
+    color: #334155;
+    font-weight: 700;
+    padding: 14px 16px;
+    border-bottom: 2px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+/* High Scannability Row Interlacing */
+tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Distinct bold layout focus configuration for pricing values */
+td:last-child {
+    font-weight: 700;
+    color: #4f46e5;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   7. ADMISSIONS SECTION, PROFILE BLOCK, & REDIRECT CTA CARD
    ========================================================================== */
 .contact-section {
     background-color: #f8fafc;
@@ -338,9 +433,7 @@ nav ul li a:hover {
     color: #334155;
 }
 
-/* ==========================================================================
-   7. NEW: ADMISSION FORM CTA CARD BOX STYLING
-   ========================================================================== */
+/* Admission Form CTA Redirect Box Layout Frame */
 .admission-cta-box {
     background: #ffffff;
     border-radius: 16px;
@@ -444,5 +537,16 @@ footer {
     }
     .admission-cta-box {
         padding: 30px 20px;
+    }
+    .faculty-card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+    .fee-hero h1 {
+        font-size: 28px;
+    }
+    td, th {
+        padding: 10px 12px;
+        font-size: 13.5px;
     }
 }
