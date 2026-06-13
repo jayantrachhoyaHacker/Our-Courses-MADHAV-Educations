@@ -1,0 +1,448 @@
+/* ==========================================================================
+   1. CORE RESET & VARIABLE CONFIGURATION
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #1e293b;
+    background-color: #f8fafc;
+}
+
+.container {
+    width: 92%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.highlight {
+    color: #6366f1;
+}
+
+/* ==========================================================================
+   2. REUSABLE UI COMPONENTS
+   ========================================================================== */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #6366f1;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.25s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #4f46e5;
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   3. GLOBAL HEADER & NAVIGATION SYSTEM
+   ========================================================================== */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 24px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+
+nav ul li a:hover {
+    color: #6366f1;
+}
+
+.active-link {
+    color: #6366f1 !important;
+    border-bottom: 2px solid #6366f1;
+    padding-bottom: 4px;
+}
+
+/* ==========================================================================
+   4. HERO SECTIONS
+   ========================================================================== */
+.hero {
+    background: radial-gradient(circle at top left, #eef2ff 0%, #ffffff 80%);
+    padding: 110px 0 85px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #0f172a;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #475569;
+    max-width: 700px;
+    margin: 0 auto 35px;
+}
+
+/* ==========================================================================
+   5. INTERACTIVE COURSE CATALOG GRID SYSTEM
+   ========================================================================== */
+.courses-section {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 55px;
+    font-size: 16px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 32px;
+}
+
+.course-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+    border-color: #cbd5e1;
+}
+
+/* Click-to-Zoom Image Anchor Systems */
+.poster-link {
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.poster-container {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background-color: #f1f5f9;
+    position: relative;
+}
+
+.course-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* Magnifying Glass Interaction Layer */
+.zoom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.zoom-overlay span {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.poster-link:hover .zoom-overlay {
+    opacity: 1;
+}
+
+.poster-link:hover .course-poster {
+    transform: scale(1.04);
+}
+
+/* Card Information Slots */
+.course-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.course-info h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.course-info p {
+    color: #64748b;
+    font-size: 14.5px;
+    margin-bottom: 24px;
+    flex-grow: 1;
+}
+
+.card-btn {
+    width: 100%;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    font-size: 14px;
+}
+
+.course-card:hover .card-btn {
+    background-color: #6366f1;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   6. ADMISSIONS SECTION & PROFILE BLOCK
+   ========================================================================== */
+.contact-section {
+    background-color: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    padding: 85px 0;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+/* Vertical Prominent Profile Badge configuration */
+.profile-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    margin-bottom: 35px;
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.profile-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #6366f1;
+    background-color: #e2e8f0;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.15);
+}
+
+.profile-meta h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.profile-meta .profile-title {
+    font-size: 14px;
+    color: #6366f1;
+    font-weight: 600;
+}
+
+.contact-info h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #0f172a;
+}
+
+.contact-info p {
+    color: #475569;
+}
+
+.info-details {
+    margin-top: 30px;
+}
+
+.info-details p {
+    margin-bottom: 18px;
+    font-size: 15.5px;
+    color: #334155;
+}
+
+/* ==========================================================================
+   7. NEW: ADMISSION FORM CTA CARD BOX STYLING
+   ========================================================================== */
+.admission-cta-box {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    padding: 40px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 450px;
+    width: 100%;
+}
+
+.form-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.cta-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.cta-content p {
+    font-size: 14.5px;
+    color: #64748b;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Customized Big Redirect Button Style */
+.cta-form-btn {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+    transition: all 0.3s ease;
+}
+
+.cta-form-btn:hover {
+    background-color: #4f46e5;
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+}
+
+.secure-tag {
+    display: block;
+    margin-top: 15px;
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   8. FOOTER BASE FRAME
+   ========================================================================== */
+footer {
+    background-color: #0f172a;
+    color: #64748b;
+    text-align: center;
+    padding: 35px 0;
+    font-size: 14px;
+    border-top: 1px solid #1e293b;
+}
+
+/* ==========================================================================
+   9. MEDIA QUERIES & RESPONSIVE LAYOUT ENGINE
+   ========================================================================== */
+@media (max-width: 992px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    nav ul li {
+        margin: 0 12px;
+    }
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    .course-grid {
+        gap: 20px;
+    }
+    .profile-block {
+        max-width: 100%;
+    }
+    .admission-cta-box {
+        padding: 30px 20px;
+    }
+}
